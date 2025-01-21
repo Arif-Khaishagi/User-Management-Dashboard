@@ -24,6 +24,17 @@ const UserForm = ({ formData, setFormData, isEditing, addUser, editUser }) => {
     }));
   };
 
+  function handleCancel(){
+    setFormData({ id: '', name: '', username: '', email: '', company: '' });
+    setFormData((prevState) => ({
+      ...prevState,
+      company: {
+        ...prevState.company,
+        name: '', // Clear company name
+      },
+    }));
+  }
+
   const handleCompanyNameChange = (e) => {
     setFormState((prevState) => ({
       ...prevState,
@@ -76,7 +87,7 @@ const UserForm = ({ formData, setFormData, isEditing, addUser, editUser }) => {
           required
         />
         <button type="submit">{isEditing ? 'Update User' : 'Add User'}</button>
-        <button type="button" onClick={() => setFormData({ id: '', name: '', username: '', email: '', company: '' })}>Cancel</button>
+        <button type="button" onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   );
